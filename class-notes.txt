@@ -1,0 +1,103 @@
+```
+$ wget https://github.com/prometheus/prometheus/releases/download/v2.31.0-rc.0/prometheus-2.31.0-rc.0.linux-amd64.tar.gz
+```
+
+$ tar xvfz prometheus-*.tar.gz
+```
+
+$ cd prometheus-*
+```
+
+$ cat prometheus.yml
+``` readme 55 - 83
+
+$ ./prometheus --config.file=prometheus.yml
+```
+http://3.86.201.32:9090/
+
+$ wget https://github.com/prometheus/node_exporter/releases/download/v1.2.2/node_exporter-1.2.2.linux-amd64.tar.gz
+```
+
+$ tar xvfz node_exporter-1.2.2.linux-amd64.tar.gz 
+```
+
+$ [ec2-user@ip-172-31-87-138 node_exporter-1.2.2.linux-amd64]$ ./node_exporter
+```
+http://3.86.201.32:9100/metrics
+
+$ prometheus.yml (31-33)
+
+  - job_name: node
+    static_configs:
+      - targets: ["3.86.201.32:9100"] # eklendi
+```
+****************************
+Bu yapılmadı. Restart yapma 
+$ [ec2-user@ip-172-31-87-138 ~]$ ps aux | grep prometheus.yml
+ ec2-user  5600  0.0  7.2 779488 73312 pts/0    Sl+  10:59   0:00 ./prometheus --config.file=prometheus.yml
+ ec2-user  5778  0.0  0.0 119420   952 pts/3    S+   11:01   0:00 grep --color=auto prometheus.yml
+$ [ec2-user@ip-172-31-87-138 ~]$ kill -1 5600
+```
+**************************
+
+$    - job_name: node
+    static_configs:
+      - targets: ["3.86.201.32:9100"]
+        labels:
+         env_name: 'test'
+         name: 'Pro_EC2'
+      - targets: ["54.211.64.10:9100"]
+        labels:
+         env_name: 'test'
+         name: 'II_EC2'
+```
+
+Grafana
+
+$ wget https://dl.grafana.com/enterprise/release/grafana-enterprise-8.2.2-1.x86_64.rpm
+```
+$ sudo yum install grafana-enterprise-8.2.2-1.x86_64.rpm
+```
+$ sudo systemctl start grafana-server.service
+```
+
+$ sudo stress --cpu 8 --timeout 20
+$ sudo yum install -y stress
+
+```
+$ sudo amazon-linux-extras install epel -y
+$ sudo yum install -y stress
+$ stress --cpu 80 --timeout 20000
+```
+
+$ 
+```
+
+$
+```
+
+$
+```
+
+$ 
+```
+
+$
+```
+
+$
+```
+
+$ 
+```
+
+$
+```
+
+$ https://prometheus.io/docs/prometheus/latest/querying/basics/
+```
+$ http://54.157.251.168:9100/metrics
+```
+$ https://prometheus.io/docs/instrumenting/exporters/
+```
+$ https://grafana.com/grafana/dashboards/12486
